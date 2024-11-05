@@ -1,0 +1,62 @@
+# YOLOv5 🚀 by Ultralytics, AGPL-3.0 license
+# COCO 2017 dataset http://cocodataset.org by Microsoft
+# Example usage: python train.py --data coco.yaml
+# parent
+# ├── yolov5
+# └── datasets
+#     └── coco  ← downloads here (20.1 GB)
+
+
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: ../datasets/ui  # dataset root dir
+train: images/train  # train images (relative to 'path') 118287 images
+val: images/val  # val images (relative to 'path') 5000 images
+test: images/test  # 20288 of 40670 images, submit to https://competitions.codalab.org/competitions/20794
+
+# Classes
+names:
+  0: "Web View"
+  1: "Advertisement"
+  2: "Toolbar"
+  3: "Text"
+  4: "Icon"
+  5: "Image"
+  6: "List Item"
+  7: "Card"
+  8: "Text Button"
+  9: "Input"
+  10: "Radio Button"
+  11: "Modal"
+  12: "Drawer"
+  13: "Background Image"
+  14: "Map View"
+  15: "On/Off Switch"
+  16: "Multi-Tab"
+  17: "Button Bar"
+  18: "Pager Indicator"
+  19: "Checkbox"
+  20: "Slider"
+  21: "Date Picker"
+  22: "Bottom Navigation"
+  23: "Video"
+  24: "Number Stepper"
+
+
+
+# Download script/URL (optional)
+#download: |
+#  from utils.general import download, Path
+#
+#
+#  # Download labels
+#  segments = False  # segment or box labels
+#  dir = Path(yaml['path'])  # dataset root dir
+#  url = 'https://github.com/ultralytics/yolov5/releases/download/v1.0/'
+#  urls = [url + ('coco2017labels-segments.zip' if segments else 'coco2017labels.zip')]  # labels
+#  download(urls, dir=dir.parent)
+#
+#  # Download data
+#  urls = ['http://images.cocodataset.org/zips/train2017.zip',  # 19G, 118k images
+#          'http://images.cocodataset.org/zips/val2017.zip',  # 1G, 5k images
+#          'http://images.cocodataset.org/zips/test2017.zip']  # 7G, 41k images (optional)
+#  download(urls, dir=dir / 'images', threads=3)
