@@ -1,0 +1,35 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+footer {
+    margin-top: auto; /* 自动边距使其在底部 */
+    text-align: center; /* 底部文本居中 */
+    padding: 10px 0; /* 上下内边距 */
+    background-color: #4CAF50; /* 背景颜色 */
+    color: white; /* 字体颜色 */
+    width: 100%; /* 底部宽度 */
+}

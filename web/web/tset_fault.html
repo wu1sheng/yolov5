@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>识别错误</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        r {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        q  {
+            font-size: 1em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+        .item {
+            flex: 1;
+            min-width: 300px; /* 确保每列的最小宽度 */
+            margin: 10px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        /* 样式1：猜你喜欢按钮 */
+        .guess-button {
+            background-color: #FFA500;
+            color: white;
+            border: 2px solid #FFA500;
+            padding: 15px 30px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            margin-bottom: 50px; /* 增加下方空行的空间 */
+        }
+        .guess-button:hover {
+            color: #FFFFFF; /* 鼠标悬停时的字体颜色变化 */
+            transform: scale(1.1); /* 鼠标悬停时放大效果 */
+        }
+
+        /* 样式2：再次尝试按钮 */
+        .retry-button {
+            background-color: #FFA500;
+            color: white;
+            border: 2px solid #FFA500;
+            padding: 15px 30px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            margin-bottom: 50px; /* 增加下方空行的空间 */
+        }
+        .retry-button:hover {
+            color: #FFFFFF; /* 鼠标悬停时的字体颜色变化 */
+            transform: scale(1.1); /* 鼠标悬停时放大效果 */
+        }
+
+        .more-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: blue;
+            text-decoration: none;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .more-link:hover {
+            color: darkorange; /* 鼠标悬停时的字体颜色变化 */
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); /* 添加阴影效果 */
+        }
+
+        /* 样式：水平居中的按钮容器 */
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        /* 样式：aj13（test）的链接 */
+        .highlight-link {
+            color: #3498db;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .highlight-link:hover {
+            color: #e74c3c;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>我的网站</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="instruction.html">操作指引</a></li>
+                <li><a href="page2.html">款式识别</a></li>
+                <li><a href="data-set.html">可识别款式</a></li>
+                <li><a href="historical-record.html">搜索记录</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 显示文字以及aj13链接 -->
+        <p>与“<a href="aj13.html" class="highlight-link">aj13（test）</a>”测试相似度为90%--------</p>
+        <p>与“<a href="aj13.html" class="highlight-link">aj13（test）</a>”测试相似度为80%--------</p>
+
+        <!-- 按钮容器，水平居中 -->
+        <div class="buttons-container">
+            <!-- "猜你喜欢"按钮，点击后跳转到data-base.html -->
+            <a href="data-base.html" class="guess-button">猜你喜欢</a>
+
+            <!-- "再次尝试"按钮，点击后跳转到page2.html -->
+            <a href="page2.html" class="retry-button">再次尝试</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 我的公司</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鞋子介绍</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            background-color: #f0f0f0;
+        }
+        header {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        nav li {
+            margin: 0 15px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+        }
+        .left {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+        .left img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+        }
+        .right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; /* 改为居中对齐内容 */
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            text-align: center; /* 也可以将介绍文本居中 */
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .links {
+            margin-top: 20px;
+            text-align: center; /* 超链接居中对齐 */
+        }
+        .links a {
+            color: #007BFF;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function goBack() {
+            window.location.href = 'page2.html';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>我的网站</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="instruction.html">操作指引</a></li>
+                <li><a href="page2.html">款式识别</a></li>
+                <li><a href="data-set.html">可识别款式</a></li>
+                <li><a href="aj13-page1.html">做好的例子</a></li>
+                <li><a href="tset_fault.html">失败的情况</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="left">
+            <img src="background.jpg" alt="鞋子图片">
+        </div>
+        <div class="right">
+            <h1>这是一款非常好的鞋子</h1>
+            <p>后续介绍：这款鞋子结合了舒适性与时尚感，非常适合日常穿着与运动使用。</p>
+            <div class="links">
+                <p>相关介绍视频：</p>
+                <a href="https://chat.chat826.com/#/home" target="_blank">介绍视频</a>
+                <p>购买链接：</p>
+                <a href="https://chat.chat826.com/#/home" target="_blank">淘宝1（已有连接到gpt）</a>
+                <a href="https://www.example.com/product2" target="_blank">徳物2</a>
+                <a href="https://www.example.com/product3" target="_blank">拼多多3</a>
+            </div>
+            <button class="button" onclick="goBack()">返回</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 我的公司</p>
+    </footer>
+</body>
+</html>

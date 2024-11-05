@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>指引</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .start-experience-btn {
+            background-color: transparent;
+            border: none;
+            color: #007bff; /* 按钮文字颜色 */
+            font-size: 16px;
+            cursor: pointer;
+            padding: 10px;
+            transition: color 0.3s;
+        }
+        .start-experience-btn:hover {
+            color: #0056b3; /* 鼠标悬停时的颜色 */
+        }
+        .spacer {
+            height: 20px; /* 空间的高度 */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>我的网站</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="instruction.html">操作指引</a></li>
+                <li><a href="page2.html">款式识别</a></li>
+                <li><a href="data-set.html">可识别款式</a></li>
+                <li><a href="historical-record.html">搜索记录</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>关于我们</h2>
+        <p>全部功能完成后进行介绍，还有操作中的问题。</p>
+        <p>添加开始体验的按钮，点击之后直接跳转到款式识别部分。</p>
+
+        <div class="spacer"></div> <!-- 添加空白空间 -->
+
+        <button class="start-experience-btn" onclick="window.location.href='page2.html'">开始体验>>>></button>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 我的公司</p>
+    </footer>
+</body>
+</html>

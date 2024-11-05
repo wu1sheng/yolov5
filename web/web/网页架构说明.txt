@@ -1,0 +1,20 @@
+首页 			index
+关于我们 		about
+操作指引		introduce
+款式识别 		page2
+可识别款式		data-base
+搜索记录 		historical-record
+
+
+结果展示1 		page1
+搜索结果2          page3
+
+page2--->page1--->page3
+page1，3在主目录看不到
+
+
+backgroung.2，3为背景图片，
+
+数据库集收集好后替换完成
+
+剩余的工作内容汇报在备注.txt中

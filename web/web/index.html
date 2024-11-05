@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>目录主系统</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow: auto; /* 允许滚动 */
+    }
+
+    header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 1rem;
+    }
+
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: inline;
+        margin-right: 20px;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .carousel {
+        position: relative;
+        width: 100%;
+        height: 100vh; /* 设置高度为视口高度的100% */
+        overflow: hidden; /* 隐藏超出部分 */
+        /* 隐藏超出考虑鞋子图片的实际大小进行调整，仿照华南理工大学官网 */
+    }
+
+    .carousel img {
+        width: 80%;
+        height: auto; /* 保持纵横比，避免拉伸 */
+        position: absolute;
+        left: 50%; /* 将图片的左边缘定位到容器的中心 */
+        transform: translateX(-50%); /* 向左平移50%以实现居中 */
+        opacity: 0;
+        transition: opacity 1s ease;
+    }
+
+    .carousel img.active {
+        opacity: 1; /* 显示当前图片 */
+    }
+
+    .text {
+        text-align: center;
+        margin-top: 20px;
+        padding: 20px;
+    }
+
+    footer {
+        margin-top: auto; /* 自动边距使其在底部 */
+        text-align: center; /* 底部文本居中 */
+        padding: 10px 0; /* 上下内边距 */
+        background-color: #4CAF50; /* 背景颜色 */
+        color: white; /* 字体颜色 */
+        width: 100%; /* 底部宽度 */
+    }
+</style>
+</head>
+<body>
+    <header>
+        <h1>我的网站</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="instruction.html">操作指引</a></li>
+                <li><a href="page2.html">款式识别</a></li>
+                <li><a href="data-set.html">可识别款式</a></li>
+                <li><a href="historical-record.html">搜索记录</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="carousel">
+        <img src="aj13-1.png" class="active" alt="图片1">
+        <img src="aj3.png" alt="图片2">
+        <img src="aj2.png" alt="图片3">
+    </div>
+
+    <div class="text">
+        <h2>欢迎来到我的网站</h2>
+        <p>这是首页的内容。</p>
+        <p>我们提供一流的解决方案，旨在提升您的工作效率和生活质量。无论您是在寻找创新的工具还是专业的支持，我们都能满足您的需求。</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 我的公司</p>
+    </footer>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel img');
+
+        function showNextImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length; // 循环
+            images[currentIndex].classList.add('active');
+        }
+
+        setInterval(showNextImage, 5000); // 每5秒切换一次
+
+        // 鼠标滚动控制上下翻动
+        window.addEventListener('wheel', (event) => {
+            if (event.deltaY > 0) {
+                window.scrollBy(0, 100); // 向下滚动100像素
+            } else {
+                window.scrollBy(0, -100); // 向上滚动100像素
+            }
+            event.preventDefault(); // 阻止默认滚动行为
+        });
+    </script>
+</body>
+</html>
