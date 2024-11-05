@@ -1,0 +1,17 @@
+import os
+
+# 假设你有一个文件列表
+files = ["9.2kyl", "9.3kyl", "9.10kyl", "9.11kyl"]
+
+# 自定义排序函数
+def sort_key(filename):
+    # 提取数字部分并转换为浮点数
+    parts = filename.split('kyl')[0].split('.')  # 先去掉kyl，再按.分割
+    return [float(part) for part in parts]
+
+# 排序文件名
+files.sort(key=sort_key)
+
+# 打印排序后的文件名
+for file in files:
+    print(file)
