@@ -135,7 +135,7 @@ def run(
 
         # Second-stage classifier (optional)
         # pred = utils.general.apply_classifier(pred, classifier_model, im, im0s)
-
+        detected_classes = set()
         # Process predictions
         for i, det in enumerate(pred):  # per image
             seen += 1
@@ -160,7 +160,7 @@ def run(
                 for c in det[:, 5].unique():
                     n = (det[:, 5] == c).sum()  # detections per class
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
-
+                    detected_classes.add(names[int(c)])  # Add class name to set
                 # Write results
                 for *xyxy, conf, cls in reversed(det):
                     if save_txt:  # Write to file
@@ -216,7 +216,8 @@ def run(
         LOGGER.info(f"Results saved to {colorstr('bold', save_dir)}{s}")
     if update:
         strip_optimizer(weights[0])  # update model (to fix SourceChangeWarning)
-
+    # Print detected classes at the end
+    print("您上传的图片/视频中出现了:", ', '.join(detected_classes))
 
 def parse_opt():
     parser = argparse.ArgumentParser()
