@@ -5,73 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>目录主系统</title>
     <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        overflow: auto; /* 允许滚动 */
-    }
+        /* 页面基础样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: auto; /* 允许页面滚动 */
+        }
 
-    header {
-        background-color: #4CAF50;
-        color: white;
-        padding: 1rem;
-    }
+        /* 头部样式 */
+        header {
+            background-color: #4CAF50; /* 背景颜色 */
+            color: white; /* 文字颜色 */
+            padding: 1rem; /* 上下内边距 */
+        }
 
-    nav ul {
-        list-style-type: none;
-        padding: 0;
-    }
+        /* 导航栏样式 */
+        nav ul {
+            list-style-type: none; /* 去除默认列表样式 */
+            padding: 0;
+        }
 
-    nav ul li {
-        display: inline;
-        margin-right: 20px;
-    }
+        nav ul li {
+            display: inline; /* 列表项水平排列 */
+            margin-right: 20px; /* 每项之间的间隔 */
+        }
 
-    nav ul li a {
-        color: white;
-        text-decoration: none;
-    }
+        nav ul li a {
+            color: white; /* 链接文字颜色 */
+            text-decoration: none; /* 去除链接下划线 */
+        }
 
-    .carousel {
-        position: relative;
-        width: 100%;
-        height: 100vh; /* 设置高度为视口高度的100% */
-        overflow: hidden; /* 隐藏超出部分 */
-        /* 隐藏超出考虑鞋子图片的实际大小进行调整，仿照华南理工大学官网 */
-    }
+        /* 轮播图样式 */
+        .carousel {
+            position: relative;
+            width: 100%; /* 宽度占满整个页面 */
+            height: 100vh; /* 高度为视口高度 */
+            overflow: hidden; /* 隐藏溢出的内容 */
+        }
 
-    .carousel img {
-        width: 80%;
-        height: auto; /* 保持纵横比，避免拉伸 */
-        position: absolute;
-        left: 50%; /* 将图片的左边缘定位到容器的中心 */
-        transform: translateX(-50%); /* 向左平移50%以实现居中 */
-        opacity: 0;
-        transition: opacity 1s ease;
-    }
+        .carousel img {
+            width: 80%; /* 图片宽度设为容器的80% */
+            height: auto; /* 保持图片的纵横比 */
+            position: absolute;
+            left: 50%; /* 将图片水平居中 */
+            transform: translateX(-50%); /* 使图片的左边缘在容器中心 */
+            opacity: 0; /* 初始时图片不可见 */
+            transition: opacity 1s ease; /* 过渡效果：1秒钟的透明度变化 */
+        }
 
-    .carousel img.active {
-        opacity: 1; /* 显示当前图片 */
-    }
+        /* 使当前图片显示 */
+        .carousel img.active {
+            opacity: 1; /* 显示当前活动图片 */
+        }
 
-    .text {
-        text-align: center;
-        margin-top: 20px;
-        padding: 20px;
-    }
+        /* 内容区域样式 */
+        .text {
+            text-align: center; /* 文字居中 */
+            margin-top: 20px;
+            padding: 20px;
+        }
 
-    footer {
-        margin-top: auto; /* 自动边距使其在底部 */
-        text-align: center; /* 底部文本居中 */
-        padding: 10px 0; /* 上下内边距 */
-        background-color: #4CAF50; /* 背景颜色 */
-        color: white; /* 字体颜色 */
-        width: 100%; /* 底部宽度 */
-    }
-</style>
+        /* 页脚样式 */
+        footer {
+            margin-top: auto; /* 使页脚在页面底部 */
+            text-align: center; /* 文字居中 */
+            padding: 10px 0; /* 上下内边距 */
+            background-color: #4CAF50; /* 背景颜色 */
+            color: white; /* 字体颜色 */
+            width: 100%; /* 页面宽度 */
+        }
+
+        /* 轮播图控制按钮样式 */
+        .controls {
+            position: absolute;
+            top: 50%; /* 垂直居中 */
+            width: 100%; /* 控制按钮宽度 */
+            display: flex; /* 使用flexbox排列按钮 */
+            justify-content: space-between; /* 按钮在两侧 */
+            transform: translateY(-50%); /* 使按钮垂直居中 */
+        }
+
+        /* 控制按钮样式 */
+        .control {
+            background-color: rgba(255, 255, 255, 0.5); /* 半透明背景 */
+            border: none;
+            padding: 10px;
+            cursor: pointer; /* 鼠标悬停时显示手型 */
+            font-size: 2em; /* 放大字体 */
+        }
+
+        /* 控制按钮悬停效果 */
+        .control:hover {
+            background-color: rgba(255, 255, 255, 0.8); /* 增加透明度 */
+        }
+    </style>
 </head>
 <body>
+    <!-- 头部区域 -->
     <header>
         <h1>我的网站</h1>
         <nav>
@@ -86,42 +117,53 @@
         </nav>
     </header>
 
+    <!-- 轮播图区域 -->
     <div class="carousel">
         <img src="aj13-1.png" class="active" alt="图片1">
-        <img src="aj3.png" alt="图片2">
-        <img src="aj2.png" alt="图片3">
+        <img src="aj11-2.png" alt="图片2">
+        <img src="aj2-1.png" alt="图片3">
+        <img src="aj3-1.png" alt="图片4">
+        <img src="aj4-1.png" alt="图片5">
     </div>
 
+    <!-- 欢迎文本区域 -->
     <div class="text">
         <h2>欢迎来到我的网站</h2>
         <p>这是首页的内容。</p>
         <p>我们提供一流的解决方案，旨在提升您的工作效率和生活质量。无论您是在寻找创新的工具还是专业的支持，我们都能满足您的需求。</p>
     </div>
 
+    <!-- 页脚 -->
     <footer>
         <p>&copy; 2024 我的公司</p>
     </footer>
 
     <script>
+        // JavaScript：轮播图逻辑
+
+        // 当前显示的图片索引
         let currentIndex = 0;
+        // 获取所有的图片元素
         const images = document.querySelectorAll('.carousel img');
 
+        // 显示下一个图片的函数
         function showNextImage() {
-            images[currentIndex].classList.remove('active');
-            currentIndex = (currentIndex + 1) % images.length; // 循环
-            images[currentIndex].classList.add('active');
+            images[currentIndex].classList.remove('active'); // 移除当前图片的“active”类
+            currentIndex = (currentIndex + 1) % images.length; // 循环切换图片
+            images[currentIndex].classList.add('active'); // 添加“active”类显示当前图片
         }
 
-        setInterval(showNextImage, 5000); // 每5秒切换一次
+        // 每隔5秒切换一次图片
+        setInterval(showNextImage, 3000);
 
-        // 鼠标滚动控制上下翻动
+        // 鼠标滚动事件：控制页面滚动
         window.addEventListener('wheel', (event) => {
             if (event.deltaY > 0) {
                 window.scrollBy(0, 100); // 向下滚动100像素
             } else {
                 window.scrollBy(0, -100); // 向上滚动100像素
             }
-            event.preventDefault(); // 阻止默认滚动行为
+            event.preventDefault(); // 阻止默认的滚动行为
         });
     </script>
 </body>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>111</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow: auto; /* 允许滚动 */
+    }
+
+    header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 1rem;
+    }
+
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: inline;
+        margin-right: 20px;
+    }
+
+    nav ul li a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .carousel {
+        position: relative;
+        width: 100%; /* 设置轮播图容器宽度为80% */
+        height: 100vh; /* 设置高度为视口高度的100% */
+        overflow: hidden; /* 隐藏超出部分 */
+        margin: 0 auto; /* 居中容器 */
+        display: flex; /* 使用flex布局 */
+        justify-content: center; /* 水平居中 */
+        align-items: center; /* 垂直居中 */
+    }
+
+    .carousel .slider {
+        display: flex;
+        transition: transform 0.8s ease;
+        width: 450%; /* 这里假设有5张图片，每张图片占100% */
+    }
+
+    .carousel img {
+        width: 100%; /* 每张图片占满容器的100% */
+        height: 100%;
+        object-fit: cover;
+        display: block; /* 确保图片展示完全 */
+    }
+
+    .controls {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        transform: translateY(-50%);
+    }
+
+    .control {
+        background-color: rgba(255, 255, 255, 0.5);
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 2em;
+    }
+
+    .control:hover {
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .text {
+        text-align: center;
+        margin-top: 20px;
+        padding: 20px;
+    }
+
+    footer {
+        margin-top: auto;
+        text-align: center;
+        padding: 10px 0;
+        background-color: #4CAF50;
+        color: white;
+        width: 100%;
+    }
+
+    /* 鼠标滚动控制上下翻动 */
+    window.addEventListener('wheel', (event) => {
+        if (event.deltaY > 0) {
+            window.scrollBy(0, 100); // 向下滚动100像素
+        } else {
+            window.scrollBy(0, -100); // 向上滚动100像素
+        }
+        event.preventDefault(); // 阻止默认滚动行为
+    });
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>我的网站</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于我们</a></li>
+                <li><a href="instruction.html">操作指引</a></li>
+                <li><a href="page2.html">款式识别</a></li>
+                <li><a href="data-set.html">可识别款式</a></li>
+                <li><a href="historical-record.html">搜索记录</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="carousel">
+        <div class="slider">
+            <img src="aj13-1.png" alt="图片1">
+            <img src="aj11-2.png" alt="图片2">
+            <img src="aj2-1.png" alt="图片3">
+            <img src="aj3-1.png" alt="图片4">
+            <img src="aj4-1.png" alt="图片5">
+        </div>
+
+        <div class="controls">
+            <button class="control" onclick="prevImage()">&#10094;</button>
+            <button class="control" onclick="nextImage()">&#10095;</button>
+        </div>
+    </div>
+
+    <div class="text">
+        <h2>欢迎来到我的网站</h2>
+        <p>这是首页的内容。</p>
+        <p>我们提供一流的解决方案，旨在提升您的工作效率和生活质量。无论您是在寻找创新的工具还是专业的支持，我们都能满足您的需求。</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 我的公司</p>
+    </footer>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel .slider img');
+        const totalImages = images.length;
+
+        function showImage(index) {
+            const slider = document.querySelector('.carousel .slider');
+            const offset = index * -100; // 每张图片占满容器100%宽度
+            slider.style.transform = `translateX(${offset}%)`;
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            showImage(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            showImage(currentIndex);
+        }
+
+        setInterval(nextImage, 5000); // 每5秒自动切换
+
+        // 鼠标滚动控制上下翻动
+        window.addEventListener('wheel', (event) => {
+            if (event.deltaY > 0) {
+                nextImage(); // 向下滚动时切换到下一张图片
+            } else {
+                prevImage(); // 向上滚动时切换到上一张图片
+            }
+            event.preventDefault(); // 阻止默认滚动行为
+        });
+    </script>
+
+</body>
+</html>
