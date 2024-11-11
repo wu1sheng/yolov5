@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload and Process File</title>
+</head>
+
+<body>
+
+    <h2>选择图片或视频文件进行上传</h2>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="file" accept="image/*,video/*" required>
+        <button type="button" onclick="uploadFile()">上传并处理</button>
+    </form>
+
+    <p id="result"></p>
+
+    <script>
+        async function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            try {
+                const response = await fetch('/process', {
+                    method: 'POST',
+                    body: formData  // 将文件包含在请求体中
+                });
+                const result = await response.json();
+
+                // 显示返回的结果
+                document.getElementById('result').textContent = result.output || result.message;
+
+                if (result.redirect_url) {
+                    window.location.href = result.redirect_url;  // 根据返回的URL跳转
+                }
+            } catch (error) {
+                console.error('Error uploading file:', error);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
