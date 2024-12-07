@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>指引</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* 按钮样式 */
+        .start-experience-btn {
+            background-color: transparent;
+            border: 2px solid #007bff; /* 边框颜色 */
+            color: #007bff; /* 按钮文字颜色 */
+            font-size: 16px;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 5px; /* 按钮圆角 */
+            transition: all 0.3s ease; /* 平滑过渡 */
+        }
+
+        /* 鼠标悬停时的效果 */
+        .start-experience-btn:hover {
+            background-color: #007bff; /* 背景颜色 */
+            color: white; /* 文字颜色 */
+        }
+
+        /* 点击按钮时的效果 */
+        .start-experience-btn:active {
+            background-color: #0056b3; /* 更深的背景颜色 */
+            border-color: #0056b3; /* 同步边框颜色 */
+            transform: scale(0.95); /* 点击时缩小一点 */
+        }
+
+        /* 空间高度 */
+        .spacer {
+            height: 20px; /* 空间的高度 */
+        }
+
+        /* 视频容器样式 */
+        .video-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* 视频样式 */
+        video {
+            width: 80%;
+            height: auto;
+            max-height: 80vh; /* 视频高度最大占80%的视口高度 */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>我的网站</h1>
+        <nav>
+            <ul>
+                <li><a href="/">首页</a></li>
+                <li><a href="/about">关于我们</a></li>
+                <li><a href="/instruction">操作指引</a></li>
+                <li><a href="/page2">款式识别</a></li>
+                <li><a href="/data-set">可识别款式</a></li>
+                <li><a href="/historical-record">搜索记录</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>下面是我们的参评功能介绍</h2>
+        <p>点击开始体验的按钮，点击之后直接跳转到款式识别部分。</p>
+
+        <div class="spacer"></div> <!-- 添加空白空间 -->
+
+        <!-- 修改后的按钮 -->
+        <button class="start-experience-btn" onclick="window.location.href='/page2'">开始体验 >>>></button>
+
+        <div class="spacer"></div>
+        <div class="spacer"></div> <!-- 添加额外空白行 -->
+        <div class="spacer"></div>
+
+        <!-- 视频部分 -->
+        <div class="video-container">
+            <video controls>
+                <source src="{{ url_for('static', filename='inst.mp4') }}" type="video/mp4">
+                您的浏览器不支持视频标签。
+            </video>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 我们团队 ---吴昌键 陈健烨 柯彦霖 张博闻</p>
+    </footer>
+</body>
+</html>

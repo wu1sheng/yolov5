@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据集</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* 标题、段落样式 */
+        p, span {
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        /* 容器样式 */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        /* 项目样式 */
+        .item {
+            flex: 1;
+            min-width: 300px; /* 确保每列的最小宽度 */
+            max-width: 300px; /* 确保每列的最大宽度 */
+            margin: 15px;
+            text-align: center;
+        }
+
+        /* 图片框样式 */
+        .item img {
+            width: 300px; /* 固定宽度 */
+            height: 300px; /* 固定高度 */
+            object-fit: cover; /* 裁剪多余部分 */
+            border: 1px solid #ccc; /* 添加边框 */
+            border-radius: 10px; /* 圆角 */
+        }
+
+        /* 链接样式 */
+        .more-link {
+            display: block;
+            margin-top: 10px;
+            color: blue;
+            text-decoration: none;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .more-link:hover {
+            color: darkorange;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 按钮样式 */
+        .start-button {
+            margin-top: 20px; /* 添加与上方内容的间距 */
+            display: block; /* 设置为块级元素，独占一行 */
+            margin-left: auto; /* 居中对齐 */
+            margin-right: auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .start-button:hover {
+            background-color: #45a049;
+        }
+
+        /* 页脚样式 */
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>我的网站</h1>
+        <nav>
+            <ul>
+                <li><a href="/">首页</a></li>
+                <li><a href="/about">关于我们</a></li>
+                <li><a href="/instruction">操作指引</a></li>
+                <li><a href="/page2">款式识别</a></li>
+                <li><a href="/data-set">可识别款式</a></li>
+                <li><a href="/historical-record">搜索记录</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>数据集</h2>
+        <h2>这是我们用于训练的可识别训练集。</h2>
+
+        <div class="container">
+            <div class="item">
+                <img src="{{ url_for('static', filename='aj13-3.png') }}" alt="Air Jordan 13 AJ13">
+                <p>Air Jordan 13 AJ13</p>
+                <span>黑白熊猫 高帮男子篮球鞋18年复刻</span>
+                <a href="/aj13-page1" class="more-link">了解更多</a>
+            </div>
+            <div class="item">
+                <img src="{{ url_for('static', filename='aj3-1.png') }}" alt="Air Jordan 3 AJ3">
+                <p>Air Jordan 3 AJ3</p>
+                <span>Retro AJ3 乔3 火焰红 2022复刻版</span>
+                <a href="/aj3-page1" class="more-link">了解更多</a>
+            </div>
+            <div class="item">
+                <img src="{{ url_for('static', filename='aj4-1.png') }}" alt="Air Jordan 4 AJ4">
+                <p>Air Jordan 4 AJ4</p>
+                <span>AJ4白黑红 中帮复古篮球鞋</span>
+                <a href="/aj4-page1" class="more-link">了解更多</a>
+            </div>
+            <div class="item">
+                <img src="{{ url_for('static', filename='aj2-1.png') }}" alt="Air Jordan 2 AJ2">
+                <p>Air Jordan 2 AJ2</p>
+                <span>白蓝北卡蓝低帮复古男子篮球鞋</span>
+                <a href="/aj2-page1" class="more-link">了解更多</a>
+            </div>
+            <div class="item">
+                <img src="{{ url_for('static', filename='aj11-1.png') }}" alt="Air Jordan 11 AJ11">
+                <p>Air Jordan 11 AJ11</p>
+                <span>AJ11减震防滑DMP黑金高帮篮球鞋</span>
+                <a href="/aj11-page1" class="more-link">了解更多</a>
+            </div>
+        </div>
+
+        <!-- 开始体验按钮 -->
+        <button class="start-button" onclick="window.location.href='/page2'">开始体验</button>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 我们团队 --- 吴昌键 陈健烨 柯彦霖 张博闻</p>
+    </footer>
+</body>
+</html>

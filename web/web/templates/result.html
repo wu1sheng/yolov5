@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>识别结果</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* 页面基础样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: auto; /* 允许页面滚动 */
+        }
+
+        /* 头部样式 */
+        header {
+            background-color: #4CAF50; /* 背景颜色 */
+            color: white; /* 文字颜色 */
+            padding: 1rem; /* 上下内边距 */
+        }
+
+        /* 导航栏样式 */
+        nav ul {
+            list-style-type: none; /* 去除默认列表样式 */
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline; /* 列表项水平排列 */
+            margin-right: 20px; /* 每项之间的间隔 */
+        }
+
+        nav ul li a {
+            color: white; /* 链接文字颜色 */
+            text-decoration: none; /* 去除链接下划线 */
+        }
+
+        /* 内容区域样式 */
+        .text {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #fff;
+        }
+
+        .text h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .text p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 页脚样式 */
+        footer {
+            margin-top: auto; /* 使页脚在页面底部 */
+            text-align: center; /* 文字居中 */
+            padding: 10px 0; /* 上下内边距 */
+            background-color: #4CAF50; /* 背景颜色 */
+            color: white; /* 字体颜色 */
+            width: 100%; /* 页面宽度 */
+
+
+        .controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+
+
+        /* 响应式布局 */
+        @media (max-width: 768px) {
+            .carousel {
+                height: 50vh;
+            }
+            .text h2 {
+                font-size: 1.5rem;
+            }
+
+            .text p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header>
+        <h1>我的网站</h1>
+        <nav>
+            <ul>
+                <li><a href="/">首页</a></li>
+                <li><a href="/about">关于我们</a></li>
+                <li><a href="/instruction">操作指引</a></li>
+                <li><a href="/page2">款式识别</a></li>
+                <li><a href="/data-set">可识别款式</a></li>
+                <li><a href="/historical-record">搜索记录</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 识别结果内容 -->
+    <div class="text">
+        <h2>识别结果</h2>
+        <p>{{ result }}</p> <!-- 显示识别结果 -->
+
+        <!-- 根据 result 显示对应的按钮 -->
+        <div id="result-buttons">
+            <!-- 默认状态下没有按钮 -->
+        </div>
+
+
+    </div>
+
+        {% if processed_file %}
+            <h2>处理后的文件：</h2>
+            {% if processed_file.endswith('.mp4') or processed_file.endswith('.webm') or processed_file.endswith('.ogg') %}
+                <br><br>
+                <!-- 下载视频按钮 -->
+                <a href="{{ url_for('static', filename=processed_file) }}" download>
+                    <button>下载视频并使用本地播放器播放</button>
+                </a>
+            {% else %}
+                <!-- 如果是图片文件 -->
+                <img src="{{ url_for('static', filename=processed_file) }}" alt="识别结果" style="max-width: 100%; height: auto;">
+            {% endif %}
+        {% else %}
+            <p>未找到处理后的文件。</p>
+        {% endif %}
+        <a href="/upload">返回上传页面</a>
+    </div>
+
+
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2024 我们团队 ---吴昌键 陈健烨 柯彦霖 张博闻</p>
+    </footer>
+
+    <script>
+        // 获取识别结果
+        const result = "{{ result }}";
+        const resultButtons = document.getElementById('result-buttons');
+
+        // 根据识别结果创建跳转按钮
+        function createButton(page) {
+            const button = document.createElement('a');
+            button.href = `/${page}`;
+            button.classList.add('button');
+            button.textContent = `跳转到 ${page} 页面`;
+            resultButtons.appendChild(button);
+        }
+
+        // 根据 result 的值生成相应的按钮
+        if (result === 'AJ11') {
+            createButton('aj11');
+        } else if (result === 'AJ2') {
+            createButton('aj2');
+        } else if (result === 'AJ3') {
+            createButton('aj3');
+        } else if (result === 'AJ13') {
+            createButton('aj13');
+        } else if (result === 'AJ4') {
+            createButton('aj4');
+        } else {
+            // 如果没有匹配的结果，显示一个提示
+            const noMatchMessage = document.createElement('p');
+            noMatchMessage.textContent = "未找到与此结果匹配的页面。";
+            resultButtons.appendChild(noMatchMessage);
+        }
+    </script>
+</body>
+</html>

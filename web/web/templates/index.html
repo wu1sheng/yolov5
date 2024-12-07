@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>目录主系统</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+    <style>
+        /* 页面基础样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: auto; /* 允许页面滚动 */
+        }
+
+        /* 头部样式 */
+        header {
+            background-color: #4CAF50; /* 背景颜色 */
+            color: white; /* 文字颜色 */
+            padding: 1rem; /* 上下内边距 */
+        }
+
+        /* 导航栏样式 */
+        nav ul {
+            list-style-type: none; /* 去除默认列表样式 */
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline; /* 列表项水平排列 */
+            margin-right: 20px; /* 每项之间的间隔 */
+        }
+
+        nav ul li a {
+            color: white; /* 链接文字颜色 */
+            text-decoration: none; /* 去除链接下划线 */
+        }
+
+        /* 轮播图样式 */
+        .carousel {
+            position: relative;
+            width: 100%; /* 宽度占满整个页面 */
+            height: 100vh; /* 高度为视口高度 */
+            overflow: hidden; /* 隐藏溢出的内容 */
+        }
+
+        .carousel img {
+            width: 80%; /* 图片宽度设为容器的80% */
+            height: auto; /* 保持图片的纵横比 */
+            position: absolute;
+            left: 50%; /* 将图片水平居中 */
+            transform: translateX(-50%);
+            opacity: 0; /* 初始时图片不可见 */
+            transition: opacity 1s ease; /* 过渡效果：1秒钟的透明度变化 */
+        }
+
+        /* 使当前图片显示 */
+        .carousel img.active {
+            opacity: 1; /* 显示当前活动图片 */
+        }
+
+        /* 内容区域样式 */
+        .text {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #fff;
+        }
+
+        .text h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .text p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 页脚样式 */
+        footer {
+            margin-top: auto; /* 使页脚在页面底部 */
+            text-align: center; /* 文字居中 */
+            padding: 10px 0; /* 上下内边距 */
+            background-color: #4CAF50; /* 背景颜色 */
+            color: white; /* 字体颜色 */
+            width: 100%; /* 页面宽度 */
+        }
+
+        .controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .control {
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 2em;
+        }
+
+        .control:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* 响应式布局 */
+        @media (max-width: 768px) {
+            .carousel {
+                height: 50vh;
+            }
+
+            nav ul li {
+                display: block;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .text h2 {
+                font-size: 1.5rem;
+            }
+
+            .text p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header>
+        <h1>我的网站</h1>
+        <nav>
+            <ul>
+                <li><a href="/">首页</a></li>
+                <li><a href="/about">关于我们</a></li>
+                <li><a href="/instruction">操作指引</a></li>
+                <li><a href="/page2">款式识别</a></li>
+                <li><a href="/data-set">可识别款式</a></li>
+                <li><a href="/historical-record">搜索记录</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 欢迎文本区域 -->
+    <div class="text">
+        <h2 id="text-h2"></h2>
+        <p id="text-p1"></p>
+        <p id="text-p2"></p>
+    </div>
+
+    <!-- 轮播图区域 -->
+    <div class="carousel">
+        <img src="{{ url_for('static', filename='aj13-1.png') }}" class="active" alt="图片1">
+        <img src="{{ url_for('static', filename='aj11-2.png') }}" alt="图片2">
+        <img src="{{ url_for('static', filename='aj2-1.png') }}"  alt="图片3">
+        <img src="{{ url_for('static', filename='aj3-1.png') }}"  alt="图片4">
+        <img src="{{ url_for('static', filename='aj4-1.png') }}"  alt="图片5">
+
+        <!-- 控制按钮 -->
+        <div class="controls">
+            <button class="control prev">&#10094;</button>
+            <button class="control next">&#10095;</button>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2024 我们团队 ---吴昌键 陈健烨 柯彦霖 张博闻</p>
+    </footer>
+
+    <script>
+         // 文本逐字显示函数
+        function typeText(element, text, delay) {
+            let i = 0;
+            element.innerHTML = ''; // 清空当前内容
+            const interval = setInterval(() => {
+                element.innerHTML += text[i];
+                i++;
+                if (i >= text.length) {
+                    clearInterval(interval);
+                }
+            }, delay);
+        }
+
+        // 页面加载后逐字显示文本
+        window.onload = function() {
+            const text1 = "欢迎来到aj系列款式识别的网站";
+            const text2 = "本网站基于基于YOLOv5的实现鞋类图像识别优化，主要面向aj系列的5款鞋类图像进行识别。";
+            const text3 = "用户可以通过上传图片，并点击识别按钮，利用Flask框架实现高效的数据传输和处理。该系统能够快速处理上传的图像并进行鞋类款式识别，确保在短时间内将识别结果反馈至前端界面。这样，用户能够实时了解图片中鞋类的具体款式，从而获得流畅且高效的使用体验。";
+
+            // 逐字显示
+            typeText(document.getElementById('text-h2'), text1, 100);
+            setTimeout(() => {
+                typeText(document.getElementById('text-p1'), text2, 100);
+            }, text1.length * 100 + 500); // 延迟显示第二段文字
+            setTimeout(() => {
+                typeText(document.getElementById('text-p2'), text3, 100);
+            }, (text1.length + text2.length) * 100 + 1000); // 延迟显示第三段文字
+        };
+
+
+        const images = document.querySelectorAll('.carousel img');
+        const prevButton = document.querySelector('.control.prev');
+        const nextButton = document.querySelector('.control.next');
+        let currentIndex = 0; // 当前图片索引
+        let autoPlay; // 自动播放的定时器
+
+        // 切换图片显示
+        function showImage(index) {
+            images[currentIndex].classList.remove('active'); // 移除当前图片的 active 类
+            currentIndex = (index + images.length) % images.length; // 防止索引超出范围
+            images[currentIndex].classList.add('active'); // 设置新图片的 active 类
+        }
+
+        // 自动播放函数
+        function startAutoPlay() {
+            autoPlay = setInterval(() => {
+                showImage(currentIndex + 1); // 每次切换到下一张
+            }, 3000); // 时间间隔：3秒
+        }
+
+        // 停止自动播放
+        function stopAutoPlay() {
+            clearInterval(autoPlay);
+        }
+
+        // 绑定按钮点击事件
+        prevButton.addEventListener('click', () => {
+            stopAutoPlay(); // 停止自动播放
+            showImage(currentIndex - 1); // 显示上一张图片
+            startAutoPlay(); // 重新开始自动播放
+        });
+
+        nextButton.addEventListener('click', () => {
+            stopAutoPlay(); // 停止自动播放
+            showImage(currentIndex + 1); // 显示下一张图片
+            startAutoPlay(); // 重新开始自动播放
+        });
+
+        // 初始化自动播放
+        startAutoPlay();
+    </script>
+</body>
+</html>

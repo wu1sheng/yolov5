@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上传文件</title>
+    <style>
+        html {
+            height: 100%;
+            margin: 0;
+            overflow-y: auto;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            text-align: center;
+            margin-top: 20px;
+            flex-grow: 1;
+        }
+
+        footer {
+            margin-top: auto;
+            text-align: center;
+            padding: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+        }
+
+        .content {
+            margin: 20px auto;
+            max-width: 80%;
+        }
+
+        .upload-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .upload-link:hover {
+            background-color: #0056b3;
+        }
+
+        form {
+            margin: 20px auto;
+            max-width: 80%;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #uploadedFileDetails {
+            display: none;
+            margin-top: 20px;
+        }
+
+        img {
+            max-width: 300px;
+            display: block;
+            margin-top: 10px;
+        }
+
+        /* 自定义 "浏览" 按钮，统一与其他按钮的格式 */
+        label.upload-link {
+            display: inline-block; /* 使 label 的行为类似按钮 */
+            margin-top: 10px; /* 与其他按钮的间距保持一致 */
+            padding: 10px 20px; /* 统一按钮大小 */
+            background-color: #007BFF; /* 背景色与其他按钮一致 */
+            color: white; /* 文字颜色与其他按钮一致 */
+            text-decoration: none; /* 去除文字下划线 */
+            border-radius: 5px; /* 圆角样式 */
+            cursor: pointer; /* 鼠标悬停时显示指针 */
+            transition: background-color 0.3s; /* 添加悬停时的渐变效果 */
+        }
+
+        /* 鼠标悬停在自定义 "浏览" 按钮上的效果 */
+        label.upload-link:hover {
+            background-color: #0056b3; /* 更深的蓝色，提供视觉反馈 */
+        }
+
+        form div {
+         margin-bottom: 30px; /* 调整每个步骤之间的间距 */
+        }
+
+        p {
+            margin-bottom: 10px; /* 调整说明文字与按钮之间的距离 */
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>我的网站</h1>
+        <nav>
+            <ul>
+                <li><a href="/">首页</a></li>
+                <li><a href="/about">关于我们</a></li>
+                <li><a href="/instruction">操作指引</a></li>
+                <li><a href="/page2">款式识别</a></li>
+                <li><a href="/data-set">可识别款式</a></li>
+                <li><a href="/historical-record">搜索记录</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>文件上传与识别</h1>
+        <div class="content">
+            <form id="uploadForm" action="/upload_file" method="post" enctype="multipart/form-data">
+    <!-- 步骤 1 -->
+    <div style="text-align: center; margin-bottom: 20px;">
+        <p>步骤 1：选择文件</p>
+        <!-- 隐藏原始的 file input -->
+        <input type="file" name="file" id="file" style="display: none;" required>
+        <!-- 自定义样式的“浏览”按钮 -->
+        <label for="file" class="upload-link">选择文件</label>
+    </div>
+
+    <!-- 步骤 2 -->
+    <div style="text-align: center; margin-bottom: 20px;">
+        <p>步骤 2：上传文件</p>
+        <!-- 上传按钮 -->
+        <button type="submit">上传</button>
+    </div>
+</form>
+
+<!-- 步骤 3 -->
+<form id="detectForm" action="/run-detect" method="post">
+    <div style="text-align: center; margin-bottom: 20px;">
+        <p>步骤 3：识别文件</p>
+        <input type="hidden" name="file_path" id="file_path" value="">
+        <button type="submit" id="runDetectBtn" disabled>识别</button>
+    </div>
+</form>
+
+
+            <hr>
+
+            <div id="uploadedFileDetails">
+                <h3>上传成功！</h3>
+                <p><strong>文件路径：</strong> <span id="filePath"></span></p>
+
+                <img id="uploadedFileImage" src="{{ file_path }}" alt=" 。"/>
+            </div>
+
+            <p id="resultText"></p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 我们团队 ---吴昌键 陈健烨 柯彦霖 张博闻</p>
+    </footer>
+
+    <script>
+        const uploadForm = document.querySelector('#uploadForm');
+        const filePathInput = document.getElementById('file_path');
+        const runDetectBtn = document.getElementById('runDetectBtn');
+        const uploadedFileDetails = document.getElementById('uploadedFileDetails');
+        const uploadedFileImage = document.getElementById('uploadedFileImage');
+        const filePathSpan = document.getElementById('filePath');
+        const resultText = document.getElementById('resultText');
+
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(uploadForm);
+            const response = await fetch(uploadForm.action, {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                filePathInput.value = data.file_path;
+                uploadedFileDetails.style.display = 'block';
+                filePathSpan.textContent = data.file_path;
+                uploadedFileImage.src = data.file_path;
+                runDetectBtn.disabled = false;
+            } else {
+                resultText.textContent = "上传失败：" + data.error;
+            }
+        });
+
+        const detectForm = document.querySelector('#detectForm');
+        detectForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            resultText.textContent = "识别中，请稍等...";
+
+            const formData = new FormData(detectForm);
+            const response = await fetch(detectForm.action, {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+
+            if (data.success) {
+                resultText.textContent = "识别结果: " + data.result;
+                window.location.href = `/result?result=${encodeURIComponent(data.result)}&processed_file=${encodeURIComponent(data.processed_file)}`;
+            } else {
+                resultText.textContent = "识别失败：" + data.error;
+            }
+        });
+    </script>
+</body>
+</html>
